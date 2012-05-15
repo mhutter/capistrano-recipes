@@ -16,7 +16,7 @@ About the Recipes included
   makes sure the local GIT repo is in sync with the remote repo before the code is deployed
 
 * **nginx**
-  installs, configures and controls [nginx][]. (Installed from [ppa:nginx/stable][ppa-nginx]
+  installs, configures and controls [nginx][]. (Installed from [ppa:nginx/stable][ppa-nginx])
 
 * **nodejs**
   installs [node.js][] from [ppa:chris-lea/node.js][ppa-nodejs]
@@ -30,12 +30,48 @@ About the Recipes included
 * **unicorn**
   installs, configures and controls [unicorn][]
 
-Configuration
--------------
-See [deploy.rb][] in the `example` subdirectory to get an idea how this works. (You know where to put the deploy.rb-file, right?)
+Usage
+-----
+Set up your `deploy.rb` according to this example:
 
+```ruby
+# -*- encoding : utf-8 -*-
+require "bundler/capistrano"
+
+load "config/recipes/base"
+# below here, comment out the ones you don't need
+load "config/recipes/nginx"
+load "config/recipes/unicorn"
+load "config/recipes/postgresql"
+load "config/recipes/nodejs"
+load "config/recipes/rbenv"
+load "config/recipes/check"
+
+server "ip.or.hostname", :web, :app, :db, primary: true
+
+set :application, "app_name"  # configure at least THIS...
+set :user, "deployer"         # ...THIS...
+set :deploy_to, "/home/#{user}/apps/#{application}"
+set :deploy_via, :remote_cache
+set :use_sudo, false # this may be a bit misleading, the user on the server still needs sudo-rights!
+
+set :scm, :git
+set :repository,  "git@github.com:your_github_account/#{application}.git" # ...and THIS.
+set :branch, "master"
+
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+
+after "deploy", "deploy:cleanup" # last 5 releases
+
+# and maybe some of THIS
+# set :ruby_version, "1.9.3-p194"   # default 1.9.3-p194
+# set :use_rmagick, true            # default false
+# set :use_rbenv_gemset, false      # default true
+```
 For configuration options on specific recipes, see the `set_default` statements in the according source files.
 
+You can find this `deploy.rb` file in the `example/` subdirectory.
 
 Credits
 =======
@@ -52,6 +88,5 @@ Credits
 [rbenv]: https://github.com/sstephenson/rbenv
 [ruby-build]: https://github.com/sstephenson/ruby-build
 [rbenv-gemset]: https://github.com/jamis/rbenv-gemset
-[deploy.rb]: https://github.com/mhutter/capistrano-recipes/blob/master/example/deploy.rb
 [Railscasts]: http://railscasts.com
 
