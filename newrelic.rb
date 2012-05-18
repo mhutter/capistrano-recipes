@@ -13,7 +13,7 @@ namespace :newrelic do
   
   task :create_symlink, roles: :web do
     if use_newrelic
-      run "ln -nfs #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
+      run "ln -nfs #{newrelic_config} #{release_path}/config/newrelic.yml"
     end
   end
   after "deploy:create_symlink", "newrelic:create_symlink"
