@@ -9,6 +9,7 @@ load "config/recipes/postgresql"
 load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/newrelic"
+load "config/recipes/uploads"
 load "config/recipes/check"
 
 server "ip.or.hostname", :web, :app, :db, primary: true
