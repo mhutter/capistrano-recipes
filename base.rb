@@ -11,6 +11,6 @@ namespace :deploy do
   desc "Set Up the server"
   task :install do
     run "#{sudo} apt-get -qq update"
-    run "#{sudo} apt-get -y install python-software-properties"
+    run "#{sudo} apt-get -yq install python-software-properties"
   end
 end

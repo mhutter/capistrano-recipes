@@ -7,9 +7,9 @@ namespace :rbenv do
   task :install, roles: :app do
     # install prequisites
     run "#{sudo} apt-get -qq update"
-    run "#{sudo} apt-get -y install curl git-core build-essential zlib1g-dev openssl libssl-dev libreadline-dev"
+    run "#{sudo} apt-get -yq install curl git-core build-essential zlib1g-dev openssl libssl-dev libreadline-dev"
     if use_rmagick
-      run "#{sudo} apt-get -y install imagemagick libmagickcore-dev libmagickwand-dev"
+      run "#{sudo} apt-get -yq install imagemagick libmagickcore-dev libmagickwand-dev"
     end
     # install rbenv and plugins
     run "git clone -q https://github.com/sstephenson/rbenv.git ~/.rbenv"

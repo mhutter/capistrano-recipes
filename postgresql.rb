@@ -7,7 +7,7 @@ namespace :postgresql do
   desc "install the latest stable release of PostgreSQL."
   task :install, roles: :db, only: {primary: true} do
     run "#{sudo} apt-get -qq update"
-    run "#{sudo} apt-get -y install postgresql libpq-dev" # TODO I think libpq-dev is needed on the APP server
+    run "#{sudo} apt-get -yq install postgresql libpq-dev" # TODO I think libpq-dev is needed on the APP server
   end
   after "deploy:install", "postgresql:install"
   
