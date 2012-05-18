@@ -8,6 +8,7 @@ load "config/recipes/unicorn"
 load "config/recipes/postgresql"
 load "config/recipes/nodejs"
 load "config/recipes/rbenv"
+load "config/recipes/newrelic"
 load "config/recipes/check"
 
 server "ip.or.hostname", :web, :app, :db, primary: true
@@ -31,3 +32,4 @@ after "deploy", "deploy:cleanup" # last 5 releases
 # set :ruby_version, "1.9.3-p194"   # default 1.9.3-p194
 # set :use_rmagick, true            # default false
 # set :use_rbenv_gemset, false      # default true
+# set :newrelic_key, "???"          # default false, which will prevent config-file creation
