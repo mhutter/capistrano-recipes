@@ -5,7 +5,7 @@ namespace :uploads do
   task :setup, roles: :web do
     run "mkdir -p #{upload_path}"
   end
-  after "deploy:setup", "uploadss:setup"
+  after "deploy:setup", "uploads:setup"
   
   desc "Symlinks the uploads to the current public folder"
   task :create_symlink, roles: :web do
