@@ -1,9 +1,35 @@
 # -*- encoding : utf-8 -*-
+worker_processes <%= unicorn_workers %>
 working_directory "<%= current_path %>"
 pid "<%= unicorn_pid %>"
 stderr_path "<%= unicorn_log %>"
 stdout_path "<%= unicorn_log %>"
 
-listen "/tmp/unicorn.<%= application %>.sock"
-worker_processes <%= unicorn_workers %>
+preload_app true
+
+# Restart any workers that haven't responded in 30 seconds
 timeout 30
+
+listen "<%= unicorn_sock %>"
+
+before_fork do |server, worker|
+  ##
+  # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
+  # immediately start loading up a new version of itself (loaded with a new
+  # version of our app). When this new Unicorn is completely loaded
+  # it will begin spawning workers. The first worker spawned will check to
+  # see if an .oldbin pidfile exists. If so, this means we've just booted up
+  # a new Unicorn and need to tell the old one that it can now die. To do so
+  # we send it a QUIT.
+  #
+  # Using this method we get 0 downtime deploys.
+
+  old_pid = '<%= unicorn_pid %>.oldbin'
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
+  end
+end

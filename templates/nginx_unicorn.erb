@@ -1,5 +1,5 @@
 upstream unicorn {
-  server unix:/tmp/unicorn.<%= application %>.sock fail_timeout=0;
+  server unix:<%= unicorn_sock %> fail_timeout=0;
 }
 
 server {
