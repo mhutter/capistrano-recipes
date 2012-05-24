@@ -27,6 +27,7 @@ set :branch, "master"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
+after "deploy", "deploy:migrate"
 after "deploy", "deploy:cleanup" # last 5 releases
 
 # and maybe some of THIS
