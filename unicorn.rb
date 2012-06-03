@@ -23,5 +23,5 @@ namespace :unicorn do
       run "service unicorn_#{application} #{command}"
     end
   end
-  after "deploy:restart", "unicorn:upgrade
+  after "deploy:restart", "unicorn:upgrade"
 end
