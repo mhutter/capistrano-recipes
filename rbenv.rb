@@ -17,8 +17,8 @@ namespace :rbenv do
     run "git clone -q https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build"
     if use_rbenv_gemset
       run "git clone -q https://github.com/jamis/rbenv-gemset.git ~/.rbenv/plugins/rbenv-gemset"
+      put "global", "/home/#{user}/.rbenv-gemsets"
     end
-    put "global", "/home/#{user}/.rbenv-gemsets"
     # do the bashrc-fu
     bashrc = <<-BASHRC
 if [ -d ${HOME}/.rbenv ]; then
