@@ -13,6 +13,10 @@ timeout 30
 listen "<%= unicorn_sock %>"
 
 before_fork do |server, worker|
+
+  # Clear DB Connections. See `after_fork`!
+  ActiveRecord::Base.connection_handler.clear_all_connections!
+
   ##
   # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
   # immediately start loading up a new version of itself (loaded with a new
@@ -32,4 +36,8 @@ before_fork do |server, worker|
       # someone else did our job for us
     end
   end
+end
+
+after_fork do |server, worker|
+  ActiveRecord::Base.connection_handler.verify_active_connections!
 end
