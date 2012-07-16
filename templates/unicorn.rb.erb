@@ -12,6 +12,11 @@ timeout 30
 
 listen "<%= unicorn_sock %>"
 
+before_exec do |server|
+  # reload Gemfile
+  ENV["BUNDLE_GEMFILE"] = "#{Rails.root}/Gemfile"
+end
+
 before_fork do |server, worker|
 
   # Clear DB Connections. See `after_fork`!
