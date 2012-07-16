@@ -3,12 +3,21 @@ upstream unicorn {
 }
 
 server {
+<%- if ipv6 %>
+  listen [::]:80;
+  listen 80;
+<%- end %>
   server_name www.<%= domain %>;
   rewrite ^ http://<%= domain %>$request_uri? permanent;
 }
 
 server {
+<%- if ipv6 %>
+  listen [::]:80 default ipv6only=on deferred;
+  listen 80 deferred;
+<%- else %>
   listen 80 default deferred;
+<%- end%>
   server_name <%= domain %>;
   root <%= current_path %>/public;
 

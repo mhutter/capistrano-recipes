@@ -1,3 +1,5 @@
+set_default(:ipv6, true)
+
 namespace :nginx do
   desc "Install latest stable release of nginx"
   task :install, roles: :web do
