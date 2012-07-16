@@ -15,6 +15,7 @@ load "config/recipes/check"
 server "ip.or.hostname", :web, :app, :db, primary: true
 
 set :application, "app_name"  # configure at least THIS...
+set :domain, "#{application}.com"
 set :user, "deployer"         # ...THIS...
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache

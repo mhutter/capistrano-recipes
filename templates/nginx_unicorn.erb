@@ -3,8 +3,13 @@ upstream unicorn {
 }
 
 server {
+  server_name www.<%= domain %>;
+  rewrite ^ http://<%= domain %>$request_uri? permanent;
+}
+
+server {
   listen 80 default deferred;
-  server_name rails.izibizi.ch;
+  server_name <%= domain %>;
   root <%= current_path %>/public;
 
   location ^~ /assets/ {
