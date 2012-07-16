@@ -9,6 +9,7 @@ load "config/recipes/postgresql"
 load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/newrelic"
+load "config/recipes/newrelic_sysmond"
 load "config/recipes/uploads"
 load "config/recipes/check"
 
@@ -19,10 +20,10 @@ set :domain, "#{application}.com"
 set :user, "deployer"         # ...THIS...
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
-set :use_sudo, false
+set :use_sudo, false # this may be a bit misleading, the user on the server still needs sudo-rights!
 
 set :scm, :git
-set :repository,  "git@github.com:your_github_account/#{application}.git" # ...and THIS.
+set :repository, "git@github.com:your_github_account/#{application}.git" # ...and THIS.
 set :branch, "master"
 
 default_run_options[:pty] = true
@@ -35,4 +36,4 @@ after "deploy", "deploy:cleanup" # last 5 releases
 # set :ruby_version, "1.9.3-p194"   # default 1.9.3-p194
 # set :use_rmagick, true            # default false
 # set :use_rbenv_gemset, false      # default true
-# set :newrelic_key, "???"          # required for `newrelic`
+# set :newrelic_key, "???"          # required for `newrelic` and `newrelic_sysmond`

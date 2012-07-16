@@ -45,11 +45,15 @@ load "config/recipes/unicorn"
 load "config/recipes/postgresql"
 load "config/recipes/nodejs"
 load "config/recipes/rbenv"
+load "config/recipes/newrelic"
+load "config/recipes/newrelic_sysmond"
+load "config/recipes/uploads"
 load "config/recipes/check"
 
 server "ip.or.hostname", :web, :app, :db, primary: true
 
 set :application, "app_name"  # configure at least THIS...
+set :domain, "#{application}.com"
 set :user, "deployer"         # ...THIS...
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
@@ -62,12 +66,14 @@ set :branch, "master"
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
+after "deploy", "deploy:migrate"
 after "deploy", "deploy:cleanup" # last 5 releases
 
 # and maybe some of THIS
 # set :ruby_version, "1.9.3-p194"   # default 1.9.3-p194
 # set :use_rmagick, true            # default false
 # set :use_rbenv_gemset, false      # default true
+# set :newrelic_key, "???"          # required for `newrelic` and `newrelic_sysmond`
 ```
 For configuration options on specific recipes, see the `set_default` statements in the according source files.
 
