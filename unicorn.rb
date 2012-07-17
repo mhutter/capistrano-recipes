@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 set_default(:unicorn_user) { user }
 set_default(:unicorn_pid) { "#{current_path}/tmp/pids/unicorn.pid" }
 set_default(:unicorn_sock) { "/tmp/unicorn.#{application}.sock" }

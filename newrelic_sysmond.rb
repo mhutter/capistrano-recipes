@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 namespace :newrelic_sysmond do
   desc "Set up New Relic Sysmond"
   task :setup, roles: :web do

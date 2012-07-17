@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 set_default(:newrelic_config) { "#{shared_path}/config/newrelic.yml" }
 
 namespace :newrelic do

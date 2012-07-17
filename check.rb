@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 namespace :check do
   desc "Make sure local git is in sync with remote."
   task :revision, roles: :web do

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Helper Methods
 def template(from, to)
   erb = File.read(File.expand_path("../templates/#{from}", __FILE__))

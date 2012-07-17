@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 namespace :nodejs do
   desc "Install the latest release of Node.js"
   task :install, roles: :app do

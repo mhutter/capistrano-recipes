@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 set_default(:upload_path) { "#{shared_path}/uploads" }
 
 namespace :uploads do

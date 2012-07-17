@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 set_default(:ipv6, true)
 
 namespace :nginx do

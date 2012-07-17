@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 set_default :ruby_version, "1.9.3-p194"
 set_default :use_rmagick, false
 set_default :use_rbenv_gemset, true
