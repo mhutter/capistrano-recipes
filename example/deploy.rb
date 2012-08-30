@@ -12,6 +12,7 @@ load "config/recipes/newrelic"
 load "config/recipes/newrelic_sysmond"
 load "config/recipes/uploads"
 load "config/recipes/check"
+# load "config/recipes/custom_config"
 
 server "ip.or.hostname", :web, :app, :db, primary: true
 
