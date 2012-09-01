@@ -1,0 +1,16 @@
+server {
+  listen [::]:80;
+  listen 80;
+  server_name s.<%= domain %>;
+  root <%= shost_path %>;
+
+  gzip_static on;
+  expires max;
+  add_header Cache-Control public;
+
+  try_files $uri =404;
+  error_page 500 502 503 504 /500.html;
+  error_page 404 /404.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+}
