@@ -1,0 +1,14 @@
+# Default listener config
+# for all Vhosts, only configure the following:
+#
+<% if ipv6 %>
+# listen [::]:80;
+<% end %>
+# listen 80;
+
+server {
+<% if ipv6 %>
+  listen [::]:80 deferred ipv6only=on;
+<% end %>
+  listen 80 deferred;
+}
