@@ -20,7 +20,7 @@ About the Recipes included
 
 * **nodejs**
   installs [node.js][] from [ppa:chris-lea/node.js][ppa-nodejs]
-  
+
 * **postgresql**
   installs, configures and controls [PostgreSQL][]. Also installs the dependencies for the [pg gem][].
 

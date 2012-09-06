@@ -7,7 +7,7 @@ namespace :newrelic do
     template "newrelic.yml.erb", newrelic_config
   end
   after "deploy:setup", "newrelic:setup"
-  
+
   task :create_symlink, roles: :web do
     run "ln -nfs #{newrelic_config} #{release_path}/config/newrelic.yml"
   end

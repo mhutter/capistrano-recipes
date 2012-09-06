@@ -7,7 +7,7 @@ namespace :uploads do
     run "mkdir -p #{upload_path}"
   end
   after "deploy:setup", "uploads:setup"
-  
+
   desc "Symlinks the uploads to the current public folder"
   task :create_symlink, roles: :web do
     run "ln -nfs #{upload_path} #{current_path}/public/"
