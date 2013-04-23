@@ -20,7 +20,8 @@ end
 before_fork do |server, worker|
 
   # Clear DB Connections. See `after_fork`!
-  ActiveRecord::Base.connection_handler.clear_all_connections!
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection_handler.clear_all_connections!
 
   ##
   # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
@@ -44,5 +45,6 @@ before_fork do |server, worker|
 end
 
 after_fork do |server, worker|
-  ActiveRecord::Base.connection_handler.verify_active_connections!
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection_handler.verify_active_connections!
 end
