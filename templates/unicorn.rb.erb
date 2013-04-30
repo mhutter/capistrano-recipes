@@ -14,7 +14,7 @@ listen "<%= unicorn_sock %>"
 
 before_exec do |server|
   # reload Gemfile
-  ENV["BUNDLE_GEMFILE"] = "#{Rails.root}/Gemfile"
+  ENV["BUNDLE_GEMFILE"] = "<%= current_path %>/Gemfile"
 end
 
 before_fork do |server, worker|
