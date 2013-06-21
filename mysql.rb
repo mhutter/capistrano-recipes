@@ -9,7 +9,7 @@ namespace :mysql do
   %w{start stop restart}.each do |command|
     desc "#{command} mysql"
     task command, :roles => :web do
-      run "#{sudo} service mysql #{command}"
+      sudo "service mysql #{command}"
     end
   end
 end

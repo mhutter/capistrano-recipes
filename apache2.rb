@@ -9,7 +9,7 @@ namespace :apache2 do
   %w{start stop restart}.each do |command|
     desc "#{command} apache2"
     task command, :roles => :web do
-      run "#{sudo} service apache2 #{command}"
+      sudo "service apache2 #{command}"
     end
   end
 end

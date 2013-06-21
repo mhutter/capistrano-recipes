@@ -12,12 +12,12 @@ namespace :ruby do
     if use_rmagick
       apt_install 'imagemagick libmagickcore-dev libmagickwand-dev'
     end
-    run "#{sudo} apt-add-repository ppa:brightbox/ruby-ng"
-    run "#{sudo} apt-get -qq update"
+    sudo "apt-add-repository ppa:brightbox/ruby-ng"
+    sudo "apt-get -qq update"
     apt_install 'ruby rubygems ruby-switch'
-    run "#{sudo} ruby-switch --set #{ruby_version}"
+    sudo "ruby-switch --set #{ruby_version}"
 
-    run "#{sudo} gem install bundler --no-rdoc --no-ri"
+    sudo "gem install bundler --no-rdoc --no-ri"
   end
   after "deploy:install", "ruby:install"
 end

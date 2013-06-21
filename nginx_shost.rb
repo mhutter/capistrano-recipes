@@ -10,7 +10,7 @@ namespace :nginx do
       run "mkdir -p #{shost_path}"
       template "nginx_shost_404.html.erb", "#{shost_path}/404.html"
       template "nginx_shost.erb", "/tmp/nginx_shost"
-      run "#{sudo} mv /tmp/nginx_shost /etc/nginx/sites-enabled/static-#{application}"
+      sudo "mv /tmp/nginx_shost /etc/nginx/sites-enabled/static-#{application}"
       nginx.restart
     end
     after "deploy:setup", "nginx:shost:setup"

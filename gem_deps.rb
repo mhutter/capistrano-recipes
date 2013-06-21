@@ -4,7 +4,7 @@ namespace :gemdeps do
 
   task :install, :roles => :app do
     packages = %w(libxslt-dev libxml2-dev) # For Nokogiri
-    run "#{sudo} apt-get -yqq install #{packages.join(' ')}"
+    sudo "apt-get -yqq install #{packages.join(' ')}"
   end
 
   before 'bundle:install', 'gemdeps:install'
