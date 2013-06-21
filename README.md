@@ -50,7 +50,7 @@ load "config/recipes/newrelic_sysmond"
 load "config/recipes/uploads"
 load "config/recipes/check"
 
-server "ip.or.hostname", :web, :app, :db, primary: true
+server "ip.or.hostname", :web, :app, :db, :primary => true
 
 set :application, "app_name"  # configure at least THIS...
 set :domain, "#{application}.com"

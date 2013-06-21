@@ -5,7 +5,7 @@ set_default :use_rbenv_gemset, true
 
 namespace :rbenv do
   desc "Install rbenv, Ruby prequisites, Ruby and the Bundler gem"
-  task :install, roles: :app do
+  task :install, :roles => :app do
     # install prequisites
     run "#{sudo} apt-get -qq update"
     run "#{sudo} apt-get -yq install curl git-core build-essential zlib1g-dev openssl libssl-dev libreadline-dev"

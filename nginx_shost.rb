@@ -6,7 +6,7 @@ namespace :nginx do
   namespace :shost do
 
     desc "Setup nginx vHost for s.example.com"
-    task :setup, roles: :web do
+    task :setup, :roles => :web do
       run "mkdir -p #{shost_path}"
       template "nginx_shost_404.html.erb", "#{shost_path}/404.html"
       template "nginx_shost.erb", "/tmp/nginx_shost"
