@@ -4,6 +4,14 @@ def apt_install(*args)
   sudo "#{apt_install_command} #{args.join(' ')}"
 end
 
+def put_as_root(data, path, options = {})
+  # Work around the sftp-doesn't-sudo issue
+  sudo "touch #{path}"
+  sudo "chown #{user} #{path}"
+  put data, path, options
+  sudo "chown root #{path}"
+end
+
 def template(from, to)
   erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
   put ERB.new(erb).result(binding), to
