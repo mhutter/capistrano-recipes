@@ -1,7 +1,11 @@
 # -*- encoding : utf-8 -*-
+
+# Change this if making a branch for a new Ubuntu
+set :ubuntu_release_codename, 'precise'
+
 # Helper Methods
-def apt_install(*args)
-  sudo "#{apt_install_command} #{args.join(' ')}"
+def apt_install(packages, options = {})
+  sudo "#{apt_install_command} #{packages}", options
 end
 
 def put_as_root(data, path, options = {})
@@ -20,8 +24,8 @@ end
 def set_default(name, *args, &block)
   set(name, *args, &block) unless exists?(name)
 end
+
 # More defaults
-set_default(:lsb_release) { capture "lsb_release -r | cut -f 2" }
 set_default :apt_install_command, "DEBIAN_FRONTEND=noninteractive apt-get -yq install"
 
 # Cap Tasks
