@@ -57,7 +57,12 @@ set :domain, "#{application}.com"
 set :user, "deployer"         # ...THIS...
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
-set :use_sudo, false # this may be a bit misleading, the user on the server still needs sudo-rights!
+
+# this may be a bit misleading, the user on the server still needs sudo-rights!
+# If your normal deploy user won't have sudo rights (they shouldn't), you can
+# run the install tasks as someone else with the following:
+#   cap [level] deploy:install -s user=[sudoer_user]
+set :use_sudo, false
 
 set :scm, :git
 set :repository,  "git@github.com:your_github_account/#{application}.git" # ...and THIS.
