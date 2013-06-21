@@ -20,8 +20,8 @@ namespace :mysql do
   end
 
   def request_root_password
-    password = Capistrano::CLI.ui.ask("What should the MySQL root user's password be?") { |q| q.echo = false }
-    password_confirm = Capistrano::CLI.ui.ask("One more time, please:") { |q| q.echo = false }
+    password = Capistrano::CLI.password_prompt("What should the MySQL root user's password be?")
+    password_confirm = Capistrano::CLI.password_prompt("One more time, please:")
     if password.to_s == password_confirm.to_s
       password
     else
