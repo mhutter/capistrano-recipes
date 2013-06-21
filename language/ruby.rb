@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 set_default :ruby_version, "ruby1.8"
 set_default :use_rmagick, false
-set_default :use_rbenv_gemset, true
 
 # This uses Brightbox's Ruby packages for Ubuntu
 namespace :ruby do
