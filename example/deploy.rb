@@ -25,6 +25,6 @@ after "deploy", "deploy:migrate"
 after "deploy", "deploy:cleanup" # last 5 releases
 
 # and maybe some of THIS
-# set :ruby_version, "1.9.3-p194"   # default 1.9.3-p194
+# set :ruby_version, "1.9"          # default 1.9
 # set :use_rmagick, true            # default false
 # set :newrelic_key, "???"          # required for `newrelic` and `newrelic_sysmond`

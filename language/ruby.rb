@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
-set_default :ruby_version, "ruby1.8"
+set_default :ruby_version, "ruby1.9"
 set_default :use_rmagick, false
 
 # This uses Brightbox's Ruby packages for Ubuntu
