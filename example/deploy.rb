@@ -18,8 +18,8 @@ server "ip.or.hostname", :web, :app, :db, :primary => true
 
 set :application, "app_name"  # configure at least THIS...
 set :domain, "#{application}.com"
-set :user, "deployer"         # ...THIS...
-set :deploy_to, "/home/#{user}/apps/#{application}"
+set :user, "deploy"         # ...THIS...
+set :deploy_to, "/srv/www/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false # this may be a bit misleading, the user on the server still needs sudo-rights!
 
@@ -36,5 +36,4 @@ after "deploy", "deploy:cleanup" # last 5 releases
 # and maybe some of THIS
 # set :ruby_version, "1.9.3-p194"   # default 1.9.3-p194
 # set :use_rmagick, true            # default false
-# set :use_rbenv_gemset, false      # default true
 # set :newrelic_key, "???"          # required for `newrelic` and `newrelic_sysmond`
