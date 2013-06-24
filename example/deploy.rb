@@ -1,18 +1,6 @@
 # -*- encoding : utf-8 -*-
+# Example config/deploy.rb file for use with capistrano-recipes
 require "bundler/capistrano"
-
-load "config/recipes/base"
-# below here, comment out the ones you don't need
-load "config/recipes/nginx"
-load "config/recipes/unicorn"
-load "config/recipes/postgresql"
-load "config/recipes/nodejs"
-load "config/recipes/rbenv"
-load "config/recipes/newrelic"
-load "config/recipes/newrelic_sysmond"
-load "config/recipes/uploads"
-load "config/recipes/check"
-# load "config/recipes/custom_config"
 
 server "ip.or.hostname", :web, :app, :db, :primary => true
 
@@ -29,6 +17,9 @@ set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+
+# Load server install tasks
+load 'config/deploy/install.rb'
 
 after "deploy", "deploy:migrate"
 after "deploy", "deploy:cleanup" # last 5 releases
