@@ -6,5 +6,5 @@ namespace :gemdeps do
     apt_install 'libxslt-dev libxml2-dev' # For Nokogiri
   end
 
-  before 'bundle:install', 'gemdeps:install'
+  after 'deploy:install', 'gemdeps:install'
 end
