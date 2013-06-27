@@ -15,4 +15,7 @@ load 'config/deploy/recipes/mail/postfix'
 
 set :ruby_version, 'ruby1.8'
 load 'config/deploy/recipes/language/ruby'
+
+# Things that depend on Ruby should go down here
 load 'config/deploy/recipes/appserver/passenger'
+load 'config/deploy/recipes/other/gem_deps'
