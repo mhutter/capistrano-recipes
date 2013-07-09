@@ -11,7 +11,8 @@ namespace :ruby do
     if use_rmagick
       apt_install 'imagemagick libmagickcore-dev libmagickwand-dev'
     end
-    sudo "apt-add-repository ppa:brightbox/ruby-ng"
+    sudo "apt-add-repository --remove -y ppa:brightbox/ruby-ng"
+    sudo "apt-add-repository -y ppa:brightbox/ruby-ng-experimental"
     sudo "apt-get -qq update"
     apt_install 'ruby rubygems ruby-switch'
     sudo "ruby-switch --set #{ruby_version}"
