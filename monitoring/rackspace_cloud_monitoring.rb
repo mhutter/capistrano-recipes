@@ -1,9 +1,9 @@
-set :rackspace_username, Capistrano::CLI.ui.ask("Rackspace username?") if rackspace_username.nil?
-set :rackspace_api_key, Capistrano::CLI.ui.ask("Rackspace API key?") if rackspace_api_key.nil?
-
 namespace :rackspace_cloud_monitoring do
   desc "Install Rackspace Cloud Monitoring Agent"
   task :install do
+    set :rackspace_username, Capistrano::CLI.ui.ask("Rackspace username?")  unless exists?(:rackspace_username)
+    set :rackspace_api_key, Capistrano::CLI.ui.ask("Rackspace API key?") unless exists?(:rackspace_api_key)
+
     put_as_root "deb http://stable.packages.cloudmonitoring.rackspace.com/ubuntu-12.04-x86_64 cloudmonitoring main",
                 '/etc/apt/sources.list.d/rackspace-monitoring-agent.list'
     sudo 'curl -s https://monitoring.api.rackspacecloud.com/pki/agent/linux.asc | sudo apt-key add -'
