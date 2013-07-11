@@ -6,8 +6,8 @@ namespace :rackspace_cloud_monitoring do
   task :install do
     put_as_root "deb http://stable.packages.cloudmonitoring.rackspace.com/ubuntu-12.04-x86_64 cloudmonitoring main",
                 '/etc/apt/sources.list.d/rackspace-monitoring-agent.list'
-    #sudo 'curl -s https://monitoring.api.rackspacecloud.com/pki/agent/linux.asc | sudo apt-key add -'
-    #sudo 'apt-get -qq update'
+    sudo 'curl -s https://monitoring.api.rackspacecloud.com/pki/agent/linux.asc | sudo apt-key add -'
+    sudo 'apt-get -qq update'
     apt_install 'rackspace-monitoring-agent'
 
     sudo "rackspace-monitoring-agent --setup"  do |ch, stream, out|
