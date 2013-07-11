@@ -25,7 +25,6 @@ require 'bundler/capistrano'
 # Load server install tasks
 # set :ruby_version, "1.9"          # default 1.9
 # set :use_rmagick, true            # default false
-# set :newrelic_key, "???"          # required for `newrelic` and `newrelic_sysmond`
 load 'config/deploy/install.rb'
 
 task :symlinks do
