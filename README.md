@@ -25,7 +25,7 @@ About the Recipes included
   installs, configures and controls [PostgreSQL][]. Also installs the dependencies for the [pg gem][].
 
 * **rbenv**
-  installs [rbenv][], [ruby-build][], [rbenv-gemset][] and the dependencies to build Ruby.
+  installs [rbenv][], [ruby-build][], [rbenv-gemset][] (if configured) and the dependencies to build Ruby.
 
 * **unicorn**
   installs, configures and controls [unicorn][]
@@ -35,20 +35,19 @@ Usage
 Set up your `deploy.rb` according to this example:
 
 ```ruby
-# -*- encoding : utf-8 -*-
 require "bundler/capistrano"
 
 load "config/recipes/base"
 # below here, comment out the ones you don't need
-load "config/recipes/nginx"
-load "config/recipes/unicorn"
-load "config/recipes/postgresql"
-load "config/recipes/nodejs"
-load "config/recipes/rbenv"
+load "config/recipes/check"
 load "config/recipes/newrelic"
 load "config/recipes/newrelic_sysmond"
+load "config/recipes/nginx"
+load "config/recipes/nodejs"
+load "config/recipes/postgresql"
+load "config/recipes/rbenv"
+load "config/recipes/unicorn"
 load "config/recipes/uploads"
-load "config/recipes/check"
 
 server "ip.or.hostname", :web, :app, :db, primary: true
 
@@ -70,9 +69,9 @@ after "deploy", "deploy:migrate"
 after "deploy", "deploy:cleanup" # last 5 releases
 
 # and maybe some of THIS
-# set :ruby_version, "1.9.3-p194"   # default 1.9.3-p194
+# set :ruby_version, "2.0.0-p247"   # default 2.0.0-p247
 # set :use_rmagick, true            # default false
-# set :use_rbenv_gemset, false      # default true
+# set :use_rbenv_gemset, true      # default false
 # set :newrelic_key, "???"          # required for `newrelic` and `newrelic_sysmond`
 ```
 For configuration options on specific recipes, see the `set_default` statements in the according source files.
