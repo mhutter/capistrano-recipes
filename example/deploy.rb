@@ -6,14 +6,18 @@ load "config/recipes/base"
 load "config/recipes/check"
 # load "config/recipes/custom_config"
 load "config/recipes/figaro"
-load "config/recipes/newrelic"
-load "config/recipes/newrelic_sysmond"
+load "config/recipes/mongodb"
+load "config/recipes/mongoid"
+# load "config/recipes/newrelic"
+# load "config/recipes/newrelic_sysmond"
 load "config/recipes/nginx"
-load "config/recipes/nodejs"
-load "config/recipes/postgresql"
+# load "config/recipes/nodejs"
+# load "config/recipes/postgresql"
 load "config/recipes/rbenv"
-load "config/recipes/unicorn"
+# load "config/recipes/unicorn"
 load "config/recipes/uploads"
+
+
 
 server "ip.or.hostname", :web, :app, :db, primary: true
 

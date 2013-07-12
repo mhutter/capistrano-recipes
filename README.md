@@ -18,6 +18,12 @@ Developed and tested for Ubuntu 12.04
 * **nginx**
   installs, configures and controls [nginx][]. (Installed from [ppa:nginx/stable][ppa-nginx])
 
+* **mongodb**
+  installs, configures and controls [mongodb][] (Installed from the 10gen repos)
+
+* **mongoid**
+  symlinks your custom `mongoid.yml` file for [Mongoid][]
+
 * **nodejs**
   installs [node.js][] from [ppa:chris-lea/node.js][ppa-nodejs]
 
@@ -41,14 +47,17 @@ load "config/recipes/base"
 load "config/recipes/check"
 # load "config/recipes/custom_config"
 load "config/recipes/figaro"
-load "config/recipes/newrelic"
-load "config/recipes/newrelic_sysmond"
+load "config/recipes/mongodb"
+load "config/recipes/mongoid"
+# load "config/recipes/newrelic"
+# load "config/recipes/newrelic_sysmond"
 load "config/recipes/nginx"
-load "config/recipes/nodejs"
-load "config/recipes/postgresql"
+# load "config/recipes/nodejs"
+# load "config/recipes/postgresql"
 load "config/recipes/rbenv"
-load "config/recipes/unicorn"
+# load "config/recipes/unicorn"
 load "config/recipes/uploads"
+
 
 
 server "ip.or.hostname", :web, :app, :db, primary: true
@@ -87,6 +96,8 @@ You can find this `deploy.rb` file in the `example/` subdirectory.
 
 [Capistrano]: https://github.com/capistrano/capistrano
 [Figaro]: https://github.com/laserlemon/figaro
+[mongodb]: http://www.mongodb.org
+[mongoid]: http://mongoid.org
 [nginx]: http://nginx.org
 [node.js]: http://nodejs.org
 [pg gem]: https://rubygems.org/gems/pg
