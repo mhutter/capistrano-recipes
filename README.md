@@ -15,6 +15,9 @@ Developed and tested for Ubuntu 12.04
 * **figaro**
   symlinks your custom `application.yml` file for [Figaro][]
 
+* **foreman**
+  controlls the app server via [foreman][].
+
 * **nginx**
   installs, configures and controls [nginx][]. (Installed from [ppa:nginx/stable][ppa-nginx])
 
@@ -47,6 +50,7 @@ load "config/recipes/base"
 load "config/recipes/check"
 # load "config/recipes/custom_config"
 load "config/recipes/figaro"
+load "config/recipes/foreman"
 load "config/recipes/mongodb"
 load "config/recipes/mongoid"
 # load "config/recipes/newrelic"
@@ -96,6 +100,7 @@ You can find this `deploy.rb` file in the `example/` subdirectory.
 
 [Capistrano]: https://github.com/capistrano/capistrano
 [Figaro]: https://github.com/laserlemon/figaro
+[foreman]: http://ddollar.github.io/foreman
 [mongodb]: http://www.mongodb.org
 [mongoid]: http://mongoid.org
 [nginx]: http://nginx.org
