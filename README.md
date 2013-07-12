@@ -40,6 +40,11 @@ Developed and tested for Ubuntu 12.04
   installs, configures and controls [unicorn][]
 
 ### Usage
+
+Install the recipes:
+
+    git submodule add git@github.com:mhutter/capistrano-recipes.git config/recipes
+
 Set up your `deploy.rb` according to this example:
 
 ```ruby
