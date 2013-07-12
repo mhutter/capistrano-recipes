@@ -7,13 +7,8 @@ set_default(:postgresql_database) { "#{application}_production" }
 namespace :postgresql do
   desc "install the latest stable release of PostgreSQL."
   task :install, roles: :db, only: {primary: true} do
-    unless ['12.04'].include?(lsb_release)
-      # unless we run 12.04 (which has the latest version in the repos)
-      # we need to add the backports archive
-      run "#{sudo} add-apt-repository -y ppa:pitti/postgresql"
-    end
     run "#{sudo} apt-get -qq update"
-    run "#{sudo} apt-get -yq install postgresql libpq-dev" # TODO I think libpq-dev is needed on the APP server
+    run "#{sudo} apt-get -yq install postgresql libpq-dev"
   end
   after "deploy:install", "postgresql:install"
 
