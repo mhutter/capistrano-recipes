@@ -39,6 +39,7 @@ after "deploy", "deploy:migrate"
 after "deploy", "deploy:cleanup" # last 5 releases
 
 # and maybe some of THIS
+# set :appserver, "puma"            # default unicorn, alternatives: puma
 # set :ruby_version, "2.0.0-p247"   # default 2.0.0-p247
 # set :use_rmagick, true            # default false
 # set :use_rbenv_gemset, true       # default false

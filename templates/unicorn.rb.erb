@@ -10,7 +10,7 @@ preload_app true
 # Restart any workers that haven't responded in 30 seconds
 timeout 30
 
-listen "<%= unicorn_sock %>"
+listen "/tmp/unicorn.<%= application %>.sock"
 
 before_exec do |server|
   # reload Gemfile
