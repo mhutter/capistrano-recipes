@@ -5,6 +5,7 @@ load "config/recipes/base"
 # below here, comment out the ones you don't need
 load "config/recipes/check"
 # load "config/recipes/custom_config"
+load "config/recipes/figaro"
 load "config/recipes/newrelic"
 load "config/recipes/newrelic_sysmond"
 load "config/recipes/nginx"
