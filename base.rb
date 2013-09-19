@@ -16,9 +16,13 @@ def put_as_root(data, path, options = {})
   sudo "chown root #{path}"
 end
 
+def read_template(name)
+  erb = File.read(File.expand_path("../templates/#{name}", __FILE__))
+  ERB.new(erb).result(binding)
+end
+
 def template(from, to)
-  erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
-  put ERB.new(erb).result(binding), to
+  put read_template(from), to
 end
 
 def set_default(name, *args, &block)
