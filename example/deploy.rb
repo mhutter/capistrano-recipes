@@ -24,6 +24,7 @@ set :use_sudo, false
 # Server install configuration
 # set :ruby_version, "1.9"          # default 1.9
 # set :use_rmagick, true            # default false
+# set :root_mail_recipient, 'admin@example.com'
 load 'config/deploy/install.rb'
 
 ##### EVERYTHING BELOW RELATES TO DEPLOYMENT
