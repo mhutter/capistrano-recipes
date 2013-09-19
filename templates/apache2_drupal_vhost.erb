@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+  DocumentRoot <%= deploy_to %>/docroot
+  ServerName <%= domain %>
+
+  TransferLog /var/log/apache2/access_log_<%= application %>
+  ErrorLog /var/log/apache2/error_log_<%= application %>
+
+  <Directory <%= deploy_to %>>/docroot
+    AllowOverride All
+  </Directory>
+</VirtualHost>
