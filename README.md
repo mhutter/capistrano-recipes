@@ -1,6 +1,8 @@
 Capistrano Recipe Collection
 ============================
-[Capistrano](http://www.capistranorb.com/) is a remote multi-server automation tool. This collection of recipes helps you set up a new Rails server. This functionality is similar to [Capistrano's `deploy:cold`](https://github.com/capistrano/capistrano/wiki/2.x-From-The-Beginning#about-deploycold).
+[Capistrano](http://www.capistranorb.com/) is a remote multi-server automation tool.
+
+This collection of recipes helps you set up new servers. This functionality is similar to [Capistrano's `deploy:cold`](https://github.com/capistrano/capistrano/wiki/2.x-From-The-Beginning#about-deploycold).
 
 This branch is for Ubuntu 12.04. Check the git branches if you're using another Linux.
 
@@ -25,16 +27,19 @@ Setting up new server(s)
     %sudo   ALL=(ALL) NOPASSWD: ALL
 
 7. `sudo chmod 440 /etc/sudoers.d/passwordless`
-8. Copy files from deploy example:
+8. If you're not already using capistrano for deployment, copy the example `config/deploy.rb`:
 
     cp -r config/deploy/recipes/example/deploy.rb config/deploy.rb
+
+  If you are using capistrano already, review `example/deploy.rb` and make sure you've got all of the necessary settings. You'll definitely need the `load 'config/install.rb'` line.
+
+9. Copy the example recipe selection file:
+
     cp -r config/deploy/recipes/example/deploy/install.rb config/install.rb
 
-9. Make sure you've pushed any local changes to the git server.
+  and modify it as necessary for your desired configuration.
+
 10. `Run cap [level] deploy:install -s user=[your sudoer]`
-11. `Run cap [level] deploy:setup`
-12. `Run cap [level] deploy`
-13. Upload your database.
 
 Credits
 =======

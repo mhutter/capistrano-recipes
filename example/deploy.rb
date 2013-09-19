@@ -1,31 +1,43 @@
-# -*- encoding : utf-8 -*-
 # Example config/deploy.rb file for use with capistrano-recipes
-server "ip.or.hostname", :web, :app, :db, :primary => true # CONFIGURE THIS...
 
-set :application, "app_name"  # CONFIGURE THIS...
+# Essential configuration
+set :application, "app_name" # <- Make sure you at least set this!
 set :domain, "#{application}.com"
-set :user, "deploy" # This is not easily changeable, as recipes depend on it
+set :repository, "git@github.com:your_github_account/#{application}.git"
+
+# If you've got a single server, modify this block accordingly
+server "ip.or.hostname", :web, :app, :db, :primary => true # CONFIGURE THIS...
 set :deploy_to, "/srv/www/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
-set :scm, :git
-set :repository, "git@github.com:your_github_account/#{application}.git" # ...and THIS.
 set :branch, "master"
-ssh_options[:forward_agent] = true
 
-# Don't want Darwin-only (OS X-only) gems installed on Linux servers
-set :bundle_without, [:darwin, :development, :test]
+# If you have multiple servers, do something like the following instead of
+# the block above. See the docs for more information:
+# https://github.com/capistrano/capistrano/wiki/2.x-Multistage-Extension
+# set :stages, %w(production staging)
+# set :default_stage, "staging"
+# require 'capistrano/ext/multistage'
 
-# Make sure to use bundler!
-set :rake_cmd, 'bundle exec rake'
+# Settings common to install and deploy
+set :user, "deploy" # This is not easily changeable, as recipes depend on it
+set :use_sudo, false
 
-require 'capistrano/ext/multistage'
-require 'bundler/capistrano'
-
-# Load server install tasks
+# Server install configuration
 # set :ruby_version, "1.9"          # default 1.9
 # set :use_rmagick, true            # default false
 load 'config/deploy/install.rb'
+
+##### EVERYTHING BELOW RELATES TO DEPLOYMENT
+# You can delete it if you're just doing server setup.
+
+# Deployment settings
+# Make sure to use bundler!
+set :scm, :git
+ssh_options[:forward_agent] = true
+# Don't want Darwin-only (OS X-only) gems installed on Linux servers
+set :bundle_without, [:darwin, :development, :test]
+set :rake_cmd, 'bundle exec rake'
+
+require 'bundler/capistrano'
 
 task :symlinks do
   # Link to shared resources, if you have them in .gitignore
