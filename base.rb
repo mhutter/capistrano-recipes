@@ -38,5 +38,6 @@ namespace :deploy do
   task :install do
     sudo "apt-get -qq update"
     apt_install 'python-software-properties'
+    sudo "apt-get -yq dist-upgrade"
   end
 end
