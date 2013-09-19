@@ -21,7 +21,7 @@ load 'config/install/recipes/database/postgresql'
 load 'config/install/recipes/other/memcached'
 
 # PHP stuff
-load 'config/install/recipes/languages/php'
+load 'config/install/recipes/language/php'
 
 # Rails stuff
 load 'config/install/recipes/log/logrotate_rails'
