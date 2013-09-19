@@ -18,7 +18,7 @@ namespace :deploy_user do
     # Create deploy's public and private keys
     run "#{sudo} -u deploy ssh-keygen -q -t rsa -f /home/deploy/.ssh/id_rsa -N ''"
     sudo "cat /home/deploy/.ssh/id_rsa.pub"
-    Capistrano::CLI.password_prompt("Pausing so you can copy the deploy user's public key...press return")
+    Capistrano::CLI.password_prompt("Pausing so you can copy the deploy user's public key (for Github access)...press return")
 
     # Load github's SSH fingerprint into the list of known hosts
     run "ssh-keyscan -H github.com | #{sudo} -u deploy tee -a /home/deploy/.ssh/known_hosts"
