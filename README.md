@@ -14,7 +14,7 @@ Setting up new server(s)
 
 1. If capistrano will be used for app deployment, add `capistrano` and `capistrano-ext` to the :development section of your Gemfile and run `bundle install`. Otherwise, run `gem install capistrano capistrano-ext` if you're just using capistrano for server setup.
 2. Run `capify .` to bootstrap your application for Capistrano.
-3. `git submodule add -b ubuntu12.04.2 git@github.com:singlebrook/capistrano-recipes.git config/install/recipes`
+3. `git submodule add -b ubuntu12.04 git@github.com:singlebrook/capistrano-recipes.git config/install/recipes`
 4. `git submodule update --init`
 5. Create yourself a sudoer user on each server:
   * `adduser [you] --ingroup sudo`
@@ -23,8 +23,10 @@ Setting up new server(s)
   * set permissions: `chmod -R og-rwx ~/.ssh`
 6. `sudo vi /etc/sudoers.d/passwordless` to contain the following:
 
-    \# Allow members of group sudo to execute any command with no password
+    ```
+    # Allow members of group sudo to execute any command with no password
     %sudo   ALL=(ALL) NOPASSWD: ALL
+    ```
 
 7. `sudo chmod 440 /etc/sudoers.d/passwordless`
 8. If you're not already using capistrano for deployment, copy the example `config/deploy.rb`:
